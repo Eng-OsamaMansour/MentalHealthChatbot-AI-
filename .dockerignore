@@ -1,0 +1,32 @@
+# Ignore IDE specific files
+.idea/
+.vscode/
+
+# Ignore test reports and temporary files
+test-results/
+test-output/
+# Ignore Gradle build files and caches
+.gradle/
+build/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log files and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignore compiled class files
+*.class
+
+# Ignore JARs and WARs (except the built one)
+*.jar
+*.war
+
+# Ignore environment and secrets files (for security)
+.env
+*.env
+secrets/
