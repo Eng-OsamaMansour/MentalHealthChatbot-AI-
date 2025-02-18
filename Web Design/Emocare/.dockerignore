@@ -1,5 +1,5 @@
 # Ignore IDE specific files
-.idea/
+../../.idea/
 .vscode/
 
 # Ignore test reports and temporary files
