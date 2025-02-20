@@ -17,7 +17,9 @@ const Login = () => {
       onSubmit={handleLogin}
       linkText="ليس لديك حساب؟"
       linkTo="/signup"
-      linkAction={() => navigate("/signup")}    />
+      linkAction={() => navigate("/signup")}
+      linkLabel="إنشاء حساب"
+    />
   );
 };
 
