@@ -95,7 +95,7 @@ const SignForm = ({ title, buttonText, onSubmit, linkText, linkTo, linkAction })
                     <button className="sign-button" type="submit">{buttonText}</button>
                 </form>
                 <p className="sign-p">
-                    {linkText} <a href={linkTo} onClick={(e) => { e.preventDefault(); linkAction(); }}>{linkTo}</a>
+                    {linkText} <a href={linkTo} onClick={(e) => { e.preventDefault(); if (linkAction) linkAction(); }}>{linkTo}</a>
                 </p>
             </div>
         </div>
