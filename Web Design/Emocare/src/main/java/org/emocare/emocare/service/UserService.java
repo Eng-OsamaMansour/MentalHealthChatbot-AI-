@@ -2,9 +2,11 @@ package org.emocare.emocare.service;
 
 import lombok.NonNull;
 import org.emocare.emocare.dto.UserDto;
+import org.emocare.emocare.model.Role;
 import org.emocare.emocare.model.User;
 import org.emocare.emocare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,9 @@ public class UserService
 {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<UserDto> readAll()
     {
@@ -50,6 +55,13 @@ public class UserService
         userRepository.deleteById(username);
     }
 
+    public User register(UserDto aInUserDto)
+    {
+        User lUser = mapUserDtoToUser(aInUserDto);
+        User lSavedUser = userRepository.save(lUser);
+        return lSavedUser;
+    }
+
     private UserDto mapUserToUserDto(User user)
     {
         return UserDto.builder()
@@ -60,6 +72,7 @@ public class UserService
                 .email(user.getEmail())
                 .dateOfBirth(user.getDateOfBirth())
                 .gender(user.getGender())
+                .role(user.getRole())
                 .build();
     }
 
@@ -73,6 +86,8 @@ public class UserService
                 .email(user.getEmail())
                 .dateOfBirth(user.getDateOfBirth())
                 .gender(user.getGender())
+                .password(passwordEncoder.encode(user.getPassword()))
+                .role(user.getRole())
                 .build();
     }
 }

@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@Validated
 @RequestMapping(path = "/user")
+@Validated
 public class UserController
 {
     @Autowired
