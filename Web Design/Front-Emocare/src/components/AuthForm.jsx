@@ -41,8 +41,9 @@ const AuthForm = ({ title, buttonText, onSubmit, linkText, linkTo, linkAction })
           <button className="auth-button" type="submit">{buttonText}</button>
         </form>
         <p className="auth-p">
-          {linkText} <a href={linkTo}>{linkAction}</a>
+            {linkText} <a href={linkTo} onClick={(e) => { e.preventDefault(); if (linkAction) linkAction(); }}>{linkAction}</a>
         </p>
+
       </div>
     </div>
   );
