@@ -1,8 +1,8 @@
 package org.emocare.emocare.service;
 
 import lombok.NonNull;
+import lombok.SneakyThrows;
 import org.emocare.emocare.dto.UserDto;
-import org.emocare.emocare.model.Role;
 import org.emocare.emocare.model.User;
 import org.emocare.emocare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,7 @@ public class UserService
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @SneakyThrows
     public List<UserDto> readAll()
     {
         List<User> allUsers = userRepository.findAll();
@@ -28,6 +29,7 @@ public class UserService
         return lList;
     }
 
+    @SneakyThrows
     public UserDto read(@NonNull String username)
     {
         User user = userRepository.findByUsername(username)
@@ -36,6 +38,7 @@ public class UserService
         return userDto;
     }
 
+    @SneakyThrows
     public UserDto create(UserDto user)
     {
         User savedUser = userRepository.save(mapUserDtoToUser(user));
@@ -43,6 +46,7 @@ public class UserService
         return userDto;
     }
 
+    @SneakyThrows
     public UserDto update(UserDto user)
     {
         User updatedUser = userRepository.save(mapUserDtoToUser(user));
@@ -50,11 +54,13 @@ public class UserService
         return userDto;
     }
 
+    @SneakyThrows
     public void delete(String username)
     {
         userRepository.deleteById(username);
     }
 
+    @SneakyThrows
     public User register(UserDto aInUserDto)
     {
         User lUser = mapUserDtoToUser(aInUserDto);
