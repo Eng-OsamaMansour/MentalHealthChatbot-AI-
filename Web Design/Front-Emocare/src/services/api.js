@@ -1,4 +1,5 @@
-const BASE_API_URL = 'http://localhost:8080/api/v1';
+const BASE_API_URL = 'http://localhost:8080';
+const AI_API_URL = 'http://localhost:5000';
 
 export const signup = async (formData) => {
     try {
@@ -59,3 +60,45 @@ export const fetchUserData = async (token, username) => {
         throw new Error(error.message || 'An unexpected error occurred');
     }
 };
+
+export const send_receive_text = async (text) => {
+    try {
+        const response = await fetch(`${AI_API_URL}/send_receive_text`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(text)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'An error occurred during sign up');
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw new Error(error.message || 'An unexpected error occurred');
+    }
+}
+
+export const send_receive_voice = async (audio) => {
+    try {
+        const response = await fetch(`${AI_API_URL}/send_receive_audio`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            body: audio
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'An error occurred during sign up');
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw new Error(error.message || 'An unexpected error occurred');
+    }
+}
